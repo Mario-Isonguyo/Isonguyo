@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mario'sFolio</title>
+  <style>
+    /* --- Reset & Base --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      line-height: 1.6;
+      background: black;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+    #logo {
+      background-color: none;
+      color: ivory;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* --- Navbar --- */
+    header {
+      background-color: #111;
+      color: ivory;
+      padding: 15px 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      font-size: 1.5rem;
+    }
+    nav {
+      display: flex;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li {
+      font-weight: bold;
+
+    }
+    nav ul li:hover {
+      color: darkred;
+      font-size: 18px;
+    }
+
+    /* Mobile Menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      background: #fff;
+      height: 3px;
+      width: 25px;
+      margin: 4px 0;
+    }
+    .nav-links {
+      display: flex;
+    }
+    .nav-links.active {
+      display: block;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: #333;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .nav-links.active li {
+      margin: 10px 0;
+    }
+
+    /* --- Sections --- */
+    section {
+      padding: 80px 20px;
+      min-height: 100vh;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #home {
+     background: url(Image/WhatsApp\ Image\ 2025-09-23\ at\ 3.17.12\ PM.jpeg);
+    width: 100%;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    /* height: 50vh; */
+     position: static; 
+    font-family: sans-serif;
+      color: whitesmoke;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    #home h2 {
+      font-size: 2rem;
+      animation: fadeIn 2s ease forwards;
+    }
+     
+    .hire-me{
+    display: inline-block;
+      padding: 0.8rem 1.25rem;
+      border-radius: 999px;
+      border: none;
+      text-decoration: none;
+      font: 600 1rem/1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: white;
+      color: black;
+      box-shadow: 0 6px 16px rgba(0,0,0,.15);
+      transition: transform .08s ease, box-shadow .2s ease, opacity .2s ease;
+}
+.hire-me:hover{
+  font-size: 26px;
+  color: darkgreen;
+}
+.hire-me button:hover{
+  background-color: darkred;
+  
+}
+#logo:hover { transform: translateY(-1px); box-shadow: 0 10px 24px darkred; }
+.heading:hover { transform: translateY(-1px); box-shadow: 0 10px 24px darkred; }
+.hire-me:hover { transform: translateY(-1px); box-shadow: 0 10px 24px darkred; }
+.hire-me:active { transform: translateY(0); box-shadow: 0 4px 12px rgba(0,0,0,.12); }
+
+
+    #about,  #contact {
+      background: white;
+      margin: 20px;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    #skills{
+      background: wheat;
+      margin: 20px;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+     } 
+    #projects{
+      background: url(Image/2eee94cf-5a46-41e8-82be-22d1f46c3e9b.jpeg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      /* background: whitesmoke; */
+      margin: 20px;
+      text-align: center;
+      overflow: hidden;
+      /* width: 100%; */
+      /* max-width: 320px; */
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .project img{
+      width: 100%;
+      max-width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: block;
+      justify-items: center;
+      justify-content: center;
+    }
+    #about{
+       background: url(Image/0fc4b4de-82a5-4a7a-adf6-ba8517678131.jpeg);
+    width: 100%;
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    /* height: 100vh; */
+     position: none; 
+    font-family:Arial, Helvetica, sans-serif;
+      color: whitesmoke;
+      display: flex;
+      flex-direction: column;
+      align-items: none;
+      justify-content: none;
+      text-align: none;
+      font-size: 1.5rem;
+    }
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Skills */
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 4, 1fr));
+      gap: 15px;
+      text-align: center;
+    }
+    .skill {
+      background: url(Image/Computer\ Of\ A\ Programmer\ With\ Lines\ Code\ Of\ Software\,\ Internet\,\ Software\,\ Programmer\ Background\ Image\ And\ Wallpaper\ for\ Free\ Download.jpeg);
+      padding: 15px ;
+      border-radius: 15px;
+      transition: transform 0.3s, background 0.3s;
+      color: wheat;
+      font-size: 2rem;
+      text-align: center;
+      width: 100%;
+      justify-content: center;
+      display: flex;
+      
+    }
+    .skill:hover {
+      background: darkred;
+      color: wheat;
+      transform: scale(1.05);
+      font-size: 1.5rem;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .project {
+      
+      background: wheat;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 8px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .project:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px darkred;
+      color: darkred;
+    }
+
+    /* Contact */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    input, textarea, button {
+      padding: 10px;
+      border: 10px solid wheat;
+      border-radius: 25px;
+    }
+    input, textarea:hover {
+      color: darkgreen;
+      font-size: 1rem;
+    }
+    textarea{
+      resize: none;
+    }
+    button {
+      background: darkgreen;
+      color: wheat;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: darkgreen;
+      color: wheat;
+    }
+
+       /* copyright spot */
+
+.copy-right{
+  text-align: center;
+  padding: 15px;
+  background-color: #222;
+  color: wheat;
+  font-size: 1rem;
+  position: fixed; 
+  bottom: 0; 
+  width: 100%;
+}
+
+.foot {
+            display: flex;
+            flex-direction: row;
+            text-align: left;
+            background-color: black;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+            padding: 30px 20px;
+            gap: 30px;
+            overflow: hidden;
+            position:static;
+            clear: both;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .ft-img img {
+            border-radius: 15px;
+            padding: 5px;
+            margin-top: none;
+        }
+        
+        
+         .foot-li li{
+            text-align: center;
+            display: block;
+            justify-items: center;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-decoration-color: #ccc;
+            text-decoration: #ccc;
+        }
+        .foot-li li:hover{
+          color: darkred;
+          font-size: 1.5rem;
+        }
+        .fit {
+            color: wheat;
+            text-align: center;
+        }
+        .d {
+            padding: 20px;
+            margin: 40px;
+            justify-content: end;
+        }
+        .d button {
+            border-radius: 25px;
+            background-color: pink;
+            padding: 20px;
+            font-style: bold;
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+        
+        }
+        .d:hover {
+            box-sizing: border-box;
+            box-shadow: #ccc;
+        }
+
+    /* --- Responsive --- */
+    @media (max-width: 625px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* Keyframes */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  @media (max-width: 625px) {
+            li {
+                display: block;
+                margin: 10px 0;
+            }
+            #nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: black;
+                position: absolute;
+                top: 60px; /* Below header */
+                right: 20px;
+                padding: 15px;
+                border-radius: 10px;
+                box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+                z-index: 1000;
+            }
+            #nav-links.active {
+                display: flex;
+                animation: slideDown 0.3s ease-in-out;
+            }
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .hamburger {
+                display: block;
+                font-size: 30px;
+                cursor: pointer;
+                padding: 10px;
+                font-weight: bold;
+            }
+             #home {
+     background: url(Image/WhatsApp\ Image\ 2025-09-23\ at\ 3.17.12\ PM.jpeg);
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* height: 50vh; */
+     position: static; 
+    font-family: sans-serif;
+      color: whitesmoke;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .skill {
+      background: url(Image/Computer\ Of\ A\ Programmer\ With\ Lines\ Code\ Of\ Software\,\ Internet\,\ Software\,\ Programmer\ Background\ Image\ And\ Wallpaper\ for\ Free\ Download.jpeg);
+      padding: 15px ;
+      border-radius: 15px;
+      transition: transform 0.3s, background 0.3s;
+      color: wheat;
+      font-size: 2rem;
+      text-align: center;
+      width: 100%;
+      justify-content: center;
+      display: flex;
+      max-width: 180px;
+      
+    }
+
+    .skills-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      text-align: center;
+      justify-items: center;
+    }
+    .foot {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            background-color: black;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+            padding: 30px 20px;
+            gap: 30px;
+            overflow: hidden;
+            position:static;
+            clear: both;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .ft-img{
+          margin-top: 20px;
+        }
+         .project:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px darkred;
+      color: darkred;
+    }
+#projects{
+      background: url(Image/2eee94cf-5a46-41e8-82be-22d1f46c3e9b.jpeg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      /* background: whitesmoke; */
+      margin: 20px;
+      text-align: center;
+      overflow: hidden;
+      /* width: 100%; */
+      /* max-width: 320px; */
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+          }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="heading">
+    <h1 id="logo">ISONGUYO</h1>
+    <nav>
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Home -->
+  <section id="home"  class="visible, overlay" >
+    <h2 id="typing">
+
+    </h2><br><br>
+
+  <a 
+  class="hire-me"
+  href="mailto:isonguyovictor083@gmail.com
+  ?subject=Project%20Inquiry%20for%20Victor
+  &body=Hi%20Victor,%0A%0A
+I’d%20like%20to%20discuss%20a%20project%20with%20you.%20Here%20are%20the%20details:%0A
+- Scope:%20%0A
+- Timeline:%20%0A
+- Budget:%20%0A%0A
+Thanks!"
+>
+  <h4>Hire Me</h4>
+</a>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About</h2>
+    <hr>
+    <h4>
+    <b>Isonguyo Mario</b> is a passionate and versatile creative professional with expertise in;<br>
+     <b>web development</b><br>
+     <b>Networks/Telecom</b><br>
+     <b>copywriting</b> <br>
+     <b>graphic designing</b>, and <br>
+     <b>strategic Planning.</b><br>
+
+He is delighted in bringing ideas to life, whether it’s building; <br>
+<i>responsive, <br>
+  user-friendly websites, <br>
+  crafting engaging content, or designing visuals that make a lasting impact.</i><br><br>
+  <hr>
+ His strength lies in his ability to combine <b>critical thinking</b> with <b>problem-solving skills</b>, allowing him to tackle challenges from multiple perspectives and deliver effective, innovative solutions.
+
+With a keen eye for detail and a commitment to excellence, he strives to create work that not only meets expectations but exceeds them. For him, every project is an opportunity to learn, grow, and make a meaningful difference.
+    </h4>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-list">
+      <div class="skill">HTML</div>
+      <div class="skill">CSS</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">Networks/<br>Telecoms</div>
+      <div class="skill">Node.js</div>
+      <div class="skill">Githup</div>
+      <div class="skill">Python</div>
+      <div class="skill">Xamp</div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project">
+        <a
+        href="#https://Mario-Isonguyo/New folder.git" target="_blank">
+        <img src="Image/desktop-design.jpg" style="width: 25%;">
+      </a>
+        <h3>Food Recipe</h3>
+        <p>How omolette meal is prepared.</p>
+      </div>
+      <div class="project">
+         <a
+        href="https://mario-isonguyo.github.io/My-projects-2-/" target="_blank">
+        <img src="Image/active-states.jpg" style="width: 25%;">
+      </a>
+        <h3>Landing page</h3>
+        <p>Designing a landing page project for Veez Beauty Salon.</p>
+      </div>
+      <div class="project">
+         <a
+        href=" https://mario-isonguyo.github.io/New-folder/" target="_blank">
+        <img src="Image/active-states.jpg" style="width: 25%;">
+      </a>
+        <h3>Veez Salon website</h3>
+        <p>De Veez Beauty World website, where you can access their professional outlet and reach out to them as well.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+   <section id="contact"> 
+    <h2>Contact Me</h2> 
+    <form id="contactForm">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section> 
+
+  <footer class="foot">
+                    <div class="ft-img">
+                        <p style="color: wheat;">  <img src="Image/WhatsApp Image 2025-09-23 at 3.17.12 PM.jpeg" style="height: auto;" width="100px"><br>
+                        <br><b>Isonguyo Mario</b></p>
+                        
+                           <div class="p-img">
+                            <a href="#" target="_blank"><img src="Image/icon-facebook.svg"/></a>  <img src="Image/icon-twitter.svg"/> 
+                            <a href="#" target="_blank"><img src="Image/icon-instagram.svg"/></a>  <img src="Image/icon-youtube.svg"/>
+                    </div> 
+                    </div><br>
+                    
+                        
+
+                        <div class="ft-links">
+                            <ul class="foot-li">
+                         <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="fit">
+                            <h4>Adress:</h4>
+                            <p>Wilbahi Estate, <br>Airport Road, Abuja.</p>
+                        </div>
+
+                        <div class="fit">
+                            <h4>Contact:</h4>
+                            <p>Phone/WhatsApp: +2348107158091 <br>
+                            Email: isonguyovictor083@gmail.com</p>
+                        </div>
+
+                        <div class="d">
+                                <a 
+        class="hire-me"
+        href="mailto:isonguyovictor083@gmail.com
+        ?subject=Project%20Inquiry%20for%20Victor
+        &body=Hi%20Victor,%0A%0A
+      I’d%20like%20to%20discuss%20a%20project%20with%20you.%20Here%20are%20the%20details:%0A
+      - Scope:%20%0A
+      - Timeline:%20%0A
+      - Budget:%20%0A%0A
+      Thanks!"
+      >
+        <h4>Hire Me</h4>
+      </a>
+ 
+         </div>
+                    </footer>
+            </div>
+ 
+  <footer>
+    <div class="copy-right">
+      <p>&copy; 2025 Isonguyo Mario. All rights reserved.</p>
+    </div>  
+     </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // Section Fade-In on Scroll
+    const sections = document.querySelectorAll("section");
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.95;
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop < triggerBottom) {
+          section.classList.add("visible");
+        }
+      });
+    };
+    window.addEventListener("scroll", revealOnScroll);
+
+    // Simple form submit handler
+    document.getElementById("contactForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      alert("✅ Thank you for reaching out! I will get back to you soon.");
+
+      this .reset();
+    });
+
+     window.onload = function() {
+      // document.querySelector(".overlay").classList.add("dim");
+
+      // Typing effect
+      const text = "Hello, I'm [Isonguyo VictorMario], a passionate web developer,Copywriter, and graphic designer. I enjoy creating responsive websites, engaging content, and clean designs that bring ideas to life. with strong skills in Critical thinking, problem-solving, and Strategic Planning, I thrive on turning challenges into innovative solutions.";
+      const typingElement = document.getElementById("typing");
+      let index = 0;
+
+      function typeWriter() {
+        if (index < text.length) {
+          typingElement.textContent += text.charAt(index);
+          index++;
+          setTimeout(typeWriter, 100); // typing speed
+        } else {
+          typingElement.style.borderRight = "none"; // remove cursor after typing
+        }
+      }
+
+      typeWriter();
+    }
+    
+  </script>
+</body>
+</html>
