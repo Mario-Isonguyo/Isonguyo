@@ -141,6 +141,9 @@
   background-color: darkred;
   
 }
+#logo span{
+color: firebrick;
+}
 #logo:hover { transform: translateY(-1px); box-shadow: 0 10px 24px darkred; }
 .heading:hover { transform: translateY(-1px); box-shadow: 0 10px 24px darkred; }
 .hire-me:hover { transform: translateY(-1px); box-shadow: 0 10px 24px darkred; }
@@ -175,6 +178,7 @@
       border-radius: 8px;
       padding: 15px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      color: white;
     }
     .project img{
       width: 100%;
@@ -196,13 +200,27 @@
     /* height: 100vh; */
      position: none; 
     font-family:Arial, Helvetica, sans-serif;
-      color: whitesmoke;
+      color: white;
       display: flex;
       flex-direction: column;
       align-items: none;
       justify-content: none;
       text-align: none;
       font-size: 1.5rem;
+    }
+    #about::before{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+    #about .about{
+      position: relative;
+      z-index: 2;
     }
     h2 {
       margin-bottom: 20px;
@@ -212,7 +230,7 @@
     /* Skills */
     .skills-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 4, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 15px;
       text-align: center;
     }
@@ -290,13 +308,14 @@
 
 .copy-right{
   text-align: center;
-  padding: 15px;
+  padding: 8px;
   background-color: #222;
   color: wheat;
   font-size: 1rem;
   position: fixed; 
   bottom: 0; 
   width: 100%;
+  border-radius: 15px;
 }
 
 .foot {
@@ -437,21 +456,27 @@
       border-radius: 15px;
       transition: transform 0.3s, background 0.3s;
       color: wheat;
-      font-size: 2rem;
+      font-size: 1.5rem;
       text-align: center;
-      width: 100%;
+      width: 80%;
       justify-content: center;
       display: flex;
-      max-width: 180px;
+      max-width: 100px;
       
     }
 
     .skills-list {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 15px;
+       /* grid-template-columns: 4fr;  */
+      gap: 5px;
       text-align: center;
       justify-items: center;
+    }
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 5px;
+      text-align: center;
     }
     .foot {
             display: flex;
@@ -492,6 +517,20 @@
       padding: 15px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
+     #about::before{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+    #about .about{
+      position: relative;
+      z-index: 2;
+    }
           }
   </style>
 </head>
@@ -499,7 +538,7 @@
 
   <!-- Header -->
   <header class="heading">
-    <h1 id="logo">ISONGUYO</h1>
+    <h1 id="logo">ISONGUYO<span>(VII)</span>JNR</h1>
     <nav>
       <div class="menu-toggle" id="menu-toggle">
         <span></span>
@@ -534,7 +573,12 @@ I’d%20like%20to%20discuss%20a%20project%20with%20you.%20Here%20are%20the%20det
 Thanks!"
 >
   <h4>Hire Me</h4>
-</a>
+</a><br>
+ <div class="p-img">
+  <a href="https://www.facebook.com/victor.isonguyo.2025" target="_blank"><img src="Image/icon-facebook.svg"/></a>  <a href="https://www.linkedin.com/in/isonguyo-victor-1b54ba367/" target="_blank"><img src="Image/icon-twitter.svg"/></a> 
+  <a href="https://www.instagram.com/isonguyo?igsh=YzljYTk1ODg3Zg==" target="_blank"><img src="Image/icon-instagram.svg"/></a>  <img src="Image/icon-youtube.svg"/>
+</div> 
+
   </section>
 
   <!-- About -->
@@ -619,12 +663,12 @@ With a keen eye for detail and a commitment to excellence, he strives to create 
 
   <footer class="foot">
                     <div class="ft-img">
-                        <p style="color: wheat;">  <img src="Image/WhatsApp Image 2025-09-23 at 3.17.12 PM.jpeg" style="height: auto;" width="100px"><br>
-                        <br><b>Isonguyo Mario</b></p>
+                        <p style="color: wheat;">  <img src="Image/WhatsApp Image 2025-09-23 at 3.17.12 PM.jpeg" style="height: auto;" width="100px"><br><br>
+                        <br><b>Isonguyo Mario</b></p><br>
                         
                            <div class="p-img">
-                            <a href="#" target="_blank"><img src="Image/icon-facebook.svg"/></a>  <img src="Image/icon-twitter.svg"/> 
-                            <a href="#" target="_blank"><img src="Image/icon-instagram.svg"/></a>  <img src="Image/icon-youtube.svg"/>
+                            <a href="https://www.facebook.com/victor.isonguyo.2025" target="_blank"><img src="Image/icon-facebook.svg"/></a>  <a href="https://www.linkedin.com/in/isonguyo-victor-1b54ba367/" target="_blank"><img src="Image/icon-twitter.svg"/></a> 
+                            <a href="https://www.instagram.com/isonguyo?igsh=YzljYTk1ODg3Zg==" target="_blank"><img src="Image/icon-instagram.svg"/></a>  <img src="Image/icon-youtube.svg"/>
                     </div> 
                     </div><br>
                     
@@ -648,7 +692,7 @@ With a keen eye for detail and a commitment to excellence, he strives to create 
                         <div class="fit">
                             <h4>Contact:</h4>
                             <p>Phone/WhatsApp: +2348107158091 <br>
-                            Email: isonguyovictor083@gmail.com</p>
+                            <p><b>Email:</b></bEmail:><a href="mailto:isonguyovictor083@gmail.com">isonguyovictor083@gmail.com</a></p>
                         </div>
 
                         <div class="d">
@@ -672,7 +716,7 @@ With a keen eye for detail and a commitment to excellence, he strives to create 
  
   <footer>
     <div class="copy-right">
-      <p>&copy; 2025 Isonguyo Mario. All rights reserved.</p>
+      <p>&copy; 2025 Isonguyo Victor-Mario. All rights reserved.</p>
     </div>  
      </footer>
 
